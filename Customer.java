@@ -36,8 +36,8 @@ class Customer {
             if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) 
                 frequentRenterPoints ++;
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle()+ "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += "\t" + each.getMovie().getTitle()+ "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
         }
         //add footer lines
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
@@ -48,9 +48,10 @@ class Customer {
 
 // Refactoring 01 seperate method
 // Refactoring 02 rename variables 
-// Refactoring 03 put method getCharge into class Rental    
-    private double amountFor(Rental aRental) { 
-        return aRental.getCharge(); 
-    } 
+// Refactoring 03 put method getCharge into class Rental
+// methode wird nicht mehr gebraucht     
+//    private double amountFor(Rental aRental) { 
+//        return aRental.getCharge(); 
+//    } 
   
 }
