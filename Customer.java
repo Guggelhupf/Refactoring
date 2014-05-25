@@ -4,37 +4,30 @@ import java.lang.*;
 import java.util.*;
 
 class Customer {
-    private String name;
-    private Vector rentals = new Vector();
-    public Customer (String newname){
-        name = newname;
-    };
-    public void addRental(Rental arg) {
-        rentals.addElement(arg);
-    };
-    public String getName (){
-        return name;
-    };
+	 private String _name; 
+	   private Vector _rentals = new Vector(); 
+	 
+	   public Customer (String name){ 
+	       _name = name; 
+	   }; 
+	 
+	   public void addRental(Rental arg) { 
+	     _rentals.addElement(arg); 
+	   } 
+	   public String getName (){ 
+	       return _name; 
+	   }; 
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        Enumeration enum_rentals = rentals.elements();	    
-        String result = "Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+    	double totalAmount = 0; 
+        int frequentRenterPoints = 0; 
+        Enumeration rentals = _rentals.elements(); 
+        String result = "Rental Record for " + getName() + "\n"; 
+        while (rentals.hasMoreElements()) { 
+            Rental each = (Rental) rentals.nextElement();
 
-        while (enum_rentals.hasMoreElements()) {
-            double thisAmount = 0;
-            Rental each = (Rental) enum_rentals.nextElement();
+            // Refactoring 06
+            frequentRenterPoints += each.getFrequentRenterPoints(); 
             
-            // Refactoring 01
-            // Refactoring 04 anpassen der methode
-            thisAmount = each.getCharge();
-
-            // add frequent renter points
-            frequentRenterPoints ++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) 
-                frequentRenterPoints ++;
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle()+ "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(each.getCharge()) + "\n";
             totalAmount += each.getCharge();
@@ -46,12 +39,5 @@ class Customer {
     }
     
 
-// Refactoring 01 seperate method
-// Refactoring 02 rename variables 
-// Refactoring 03 put method getCharge into class Rental
-// methode wird nicht mehr gebraucht     
-//    private double amountFor(Rental aRental) { 
-//        return aRental.getCharge(); 
-//    } 
   
 }
