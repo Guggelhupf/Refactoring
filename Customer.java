@@ -27,7 +27,8 @@ class Customer {
             Rental each = (Rental) enum_rentals.nextElement();
             
             // Refactoring 01
-            thisAmount = amountFor(each); 
+            // Refactoring 04 anpassen der methode
+            thisAmount = each.getCharge();
 
             // add frequent renter points
             frequentRenterPoints ++;
